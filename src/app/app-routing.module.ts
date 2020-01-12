@@ -6,6 +6,11 @@ import { LayoutPrimaryComponent } from './layouts/layout-primary/layout-primary.
 const routes: Routes = [
   {
     path: '',
+    redirectTo: 'all-post',
+    pathMatch: 'full'
+  },
+  {
+    path: '',
     component: LayoutPrimaryComponent,
     children: [
       {
