@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PlaceholderService } from '../../shared/services/placeholder.service';
-import { IPost, Post } from '../../shared/models/post.model';
+import { IPost, Post, IComments } from '../../shared/models/post.model';
 
 @Component({
   selector: 'app-detail',
@@ -11,6 +11,8 @@ import { IPost, Post } from '../../shared/models/post.model';
 export class DetailComponent implements OnInit {
 
   public post: IPost = new Post();
+  public comments: Array<IComments> = [];
+  public lastComment: Date;
 
   constructor(
     private router: ActivatedRoute,
@@ -19,16 +21,30 @@ export class DetailComponent implements OnInit {
 
   ngOnInit() {
     this.router.params.subscribe((param: any) => {
-      console.log('id route', param['id']);
       this.getDetailPost(param['id']);
     });
   }
 
+  /**
+   * emitComments
+   */
+  public emitComments(e: Date) {
+    this.lastComment = e;
+  }
+
   private getDetailPost(id: number) {
     this.placeholderService.getDetailPost(id).then((response: IPost)  =>  {
-      console.log('response detail', response);
       this.post = response;
+      this.getComments(this.post.id);
     }).catch((error) =>  {
+      console.log('error', error);
+    });
+  }
+
+  private getComments(id: number) {
+    this.placeholderService.getCommentPost(id).then((response: Array<IComments>) =>  {
+      this.comments = response;
+    }).catch((error)  =>  {
       console.log('error', error);
     });
   }

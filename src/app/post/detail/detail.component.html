@@ -1,10 +1,22 @@
-
-<div fxLayout="row " fxLayoutAlign="center" >
-    <div fxFlex="90" >
-        <h1>Detail post: {{post.id}}</h1>
-        <h3>{{post.title}}</h3>
-        <p>
-            {{post.body}}
-        </p>
+<div class="container-all">
+  <div fxLayout="row wrap" fxLayoutAlign="center">
+    <div fxFlex="90">
+      <a mat-icon-button [routerLink]="['/all-post']">
+        <mat-icon>keyboard_backspace</mat-icon>
+      </a>
     </div>
+    <div fxFlex="90" class="text-right" *ngIf="lastComment !== undefined">
+      Last comment: {{lastComment | date: "medium"}}
+    </div>
+    <div fxFlex="90">
+      <h1>Detail post: {{post.id}}</h1>
+      <h3>{{post.title}}</h3>
+      <p>
+        {{post.body}}
+      </p>
+    </div>
+    <div fxFlex="90">
+      <comments *ngIf="comments.length !== 0" (dateNow)="emitComments($event);" [comments]="comments"></comments>
+    </div>
+  </div>
 </div>

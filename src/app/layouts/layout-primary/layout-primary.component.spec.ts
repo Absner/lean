@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LayoutPrimaryComponent } from './layout-primary.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterModule } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('LayoutPrimaryComponent', () => {
   let component: LayoutPrimaryComponent;
@@ -8,7 +11,11 @@ describe('LayoutPrimaryComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LayoutPrimaryComponent ]
+      declarations: [ LayoutPrimaryComponent ],
+      imports: [
+        BrowserAnimationsModule,
+        RouterTestingModule
+      ]
     })
     .compileComponents();
   }));

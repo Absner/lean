@@ -21,21 +21,21 @@ export class ListComponent implements OnInit {
   @ViewChild(MatSort, { static: false }) set matSort(ms: MatSort) {
     this.dataSource.sort = ms;
   }
-  @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
+  @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
 
   constructor(private placeholderService: PlaceholderService) { }
 
   ngOnInit() {
     this.getPost();
-    
+
   }
 
   private getPost() {
     this.placeholderService.getAllPost().then((response: Array<IPost>) => {
-      console.log('post', response);
+
       this.dataSource = new MatTableDataSource(response);
       this.dataSource.paginator = this.paginator;
-    }).catch((error: any) =>  {
+    }).catch((error: any) => {
       console.log('error', error);
     });
   }

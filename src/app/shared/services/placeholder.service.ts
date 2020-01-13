@@ -13,7 +13,7 @@ export class PlaceholderService {
    * getAllPost
    */
   public getAllPost(): Promise<any> {
-    return this.http.get(environment.api_url + '/posts').toPromise();
+    return this.http.get<any[]>(environment.api_url + '/posts').toPromise();
   }
 
   /**
@@ -21,14 +21,14 @@ export class PlaceholderService {
    * @param idPost identificador unico del post a consultar
    */
   public getDetailPost(idPost: number): Promise<any> {
-    return this.http.get(environment.api_url + '/posts/' + idPost).toPromise();
+    return this.http.get<any[]>(environment.api_url + '/posts/' + idPost).toPromise();
   }
 
   /**
    * getCommentPost
    */
   public getCommentPost(idPost: number): Promise<any> {
-    return this.http.get(environment.api_url + '/comments?postId=' + idPost).toPromise();
+    return this.http.get<any[]>(environment.api_url + '/comments?postId=' + idPost).toPromise();
   }
 
 }

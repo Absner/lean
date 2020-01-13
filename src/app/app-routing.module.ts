@@ -22,6 +22,11 @@ const routes: Routes = [
         loadChildren: () => import('./post/detail/detail.module').then(m => m.DetailModule)
       }
     ]
+  },
+  { path: '**', redirectTo: '404', pathMatch: 'full' },
+  {
+    path: '404',
+    loadChildren: () => import('./pages/not-found/not-found.module').then(m => m.NotFoundModule)
   }
 ];
 
